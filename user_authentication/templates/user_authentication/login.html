@@ -1,0 +1,44 @@
+{% extends 'user_authentication\header.html' %}
+{% load widget_tweaks %}
+{% block content  %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="card bg-light mt-5 p-3">
+        <h3 class="text-success text-center">Login</h3>
+        <form action="" class="form-group" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12 text-muted">
+                    {{form.username.label_tag}}
+                </div>
+                <div class="col-12">
+                    {{ form.username | add_class:"form-control border border-success text-success" }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-muted">
+                    {{form.password.label_tag}}
+                </div>
+                <div class="col-12">
+                    {{ form.password | add_class:"form-control border border-success text-success"}}
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <input type="submit" value="login" class="btn bg-success btn-block text-light">
+                </div>
+            </div>
+            <div class="row m-3 text-success text-center">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            <p class="mt-3 text-muted">Dont't have an account? <a class="text-success" href="{% url 'register' %}">Register</a></p>
+        </form>
+        
+    </div>
+   
+</div>
+
+{% endblock %}
